@@ -16,10 +16,33 @@ let startTime = 0;
 
 
 //On récupère les 5 meilleurs score
+
+function findMin(array){
+    let n = array.length-1;
+    let min = array[0];
+    for(let i =1;i<=n;i++){
+      if(array[i]<min){
+        min = array[i];
+      }
+    }
+    return min;
+  }
+  
+  function sortingArray(array){
+    let res = [];
+    let stack = array.slice();
+    while(stack.length!=0){
+      let min = findMin(stack);
+      let index = stack.indexOf(min);
+      res.push(min);
+      stack.splice(index,1);
+    }
+    return res;
+  }
+
 function getTopFiveScore() {
     var res = [];
-    var tab = scoreLogs;
-    tab.sort();
+    var tab = sortingArray(scoreLogs);
     for (let i = 0; i <= 4; i++) {
         res.push(tab[i]);
     }
